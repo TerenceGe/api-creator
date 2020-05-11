@@ -6,7 +6,7 @@ yarn add @terencege/api-creator
 #+END_SRC
 
 * usage
-#+BEGIN_SRC sh
+#+BEGIN_SRC js
 import apiCreator from '@terencege/api-creator'
 
 const responseTransformer = res => res.data // handle success response (optional)
