@@ -1,0 +1,28 @@
+#+title: api-creator
+
+* install
+#+BEGIN_SRC sh
+yarn add @terencege/api-creator
+#+END_SRC
+
+* usage
+#+BEGIN_SRC sh
+import apiCreator from '@terencege/api-creator'
+
+const responseTransformer = res => res.data // handle success response (optional)
+const errorTransformer = error => Promise.reject({ message: error.errorMsg }) // handle error (optional)
+const tokenFetcher = async () => 'Bearer ...' // add token for authentication (optional)
+
+const url = YOUR_API_URL
+const api = apiCreator(url, { tokenFetcher, responseTransformer, errorTransformer })
+
+const method = 'POST' // support 'GET', 'POST', 'PUT'
+const endpoint = YOUR_API_ENDPOINT
+const request = params => api(method, endpoint, params)
+
+request.then((res) => {
+   console.log(res)
+}).catch((error) => {
+   console.error(error)
+})
+#+END_SRC
